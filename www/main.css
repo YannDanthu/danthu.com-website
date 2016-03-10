@@ -1,0 +1,267 @@
+/*******
+ * general
+ *******/
+
+body {
+	margin: 40px;
+	//background-image:url(logo.jpg);
+    background-repeat:no-repeat;
+    background-position:center;
+	//font-family: arial, sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+}
+
+#content {
+    //width:100%;
+    //height:100%;
+    vertical-align:middle;
+    text-align: center;
+    //display: none;
+    position: absolute;
+}
+
+header {
+    width:100%;
+	min-height: 10em;
+	//margin-top: 10em;
+	display: block;
+	vertical-align: middle;
+}
+
+header #title {
+  //left: 50%;
+  text-align: center;
+  font-size: 4rem;
+  color: #3c3c3c;
+}
+
+header img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	vertical-align: middle;
+}
+
+#links { display: none; }
+
+article  {
+	padding-left: 20px;
+	padding-right: 20px;
+	max-width: 800px;
+	margin-left:auto;
+	margin-right: auto;
+	//border: thin solid ;//#fb710c;
+	border-radius: 3px;
+	//background-color: #e3e3e3;
+	color: #8c8c8c;
+}
+
+article h1 {
+	color: #fb710c;
+}
+
+footer {
+    bottom:5px;
+    position: absolute;
+    width:100%;
+    //margin: 8rem 0 0 0;
+    //padding: 4rem 0;
+    //border-top: #666666 1px solid;
+    font-size: 1.3rem;
+    line-height: 1.7em;
+    color: #666666;
+    text-align: center;
+    //background: #efefef;
+}
+
+a, a:visited {
+	text-decoration: none;
+	color: #fb710c;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+/*******
+ * class definition
+ *******/
+
+/* The logo in the header */
+.logo {
+    width: 128px;
+    height: 128px;
+    text-align: center;
+    line-height: 2.4rem;
+    border-radius: 75px;
+    background: #000000;
+    transition: box-shadow 0.5s;
+	background-image:url(logo.jpg);
+}
+
+/* the menu */
+ul.menu {
+	position:absolute;
+	padding: 0px 0px 0px 0px;
+	float:none;
+	clear:none;
+	width: 100%;
+	height:64px;
+	line-height: 64px;
+	list-style: none;
+	top: -55px;
+}
+
+.menu li {
+	display:inline;
+	margin:0 2px;
+	list-style-type:none;
+}
+
+/* The menu item icon on the footer */
+.menu-item, .menu-item img {
+	display: inline-block;
+	width:64px;
+	height:64px;
+	outline:none;
+	border-radius: 50px;
+	position: relative;
+}
+
+/* Add a box shadow to menu item on hover */
+.menu-item:hover{
+	overflow: visible;
+    box-shadow: rgba(0,0,0,0.15) 0 0 0 3px;
+    transition: box-shadow 0.25s;
+}
+
+/* menu item blog icon */
+.menu-blog {
+	background: #fb710c;
+}
+
+/* menu item linkedin icon */
+.menu-linkedin {
+	background: #0e76a8;
+}
+
+/* menu item linkedin icon */
+.menu-twitter {
+	background: #00acee;
+}
+
+/* menu item linkedin icon */
+.menu-stackoverflow {
+  background: #777;
+}
+
+/* CSS tooltip - initially hidden */
+.tooltip {
+	opacity: 0;
+	width: 100px;
+	height: auto;
+	line-height: 20px;
+	padding: 5px;
+	left: 50%;
+	margin-left: -55px;
+	color: #fff;
+	font-size: 12px;
+	font-weight: 700;
+	text-align:center;
+	background: #8c8c8c;
+	text-indent: 0px;
+	border-radius: 50px;
+	position: absolute;
+	bottom: -15px;
+	-webkit-backface-visibility: hidden;
+	-webkit-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+/* The little chiclet arrow above the tooltip, pointing up */
+.tooltip:after {
+	content: '';
+	position: absolute;
+	top: -6px;
+	left: 50%;
+	margin-left:-10px;
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid #8c8c8c;
+}
+
+/* On hover, show the tooltip! */
+.menu-item:hover .tooltip {
+	opacity: 1;
+	bottom: -40px;
+}
+
+/* Creates a responsive wrapper that makes our content scale nicely */
+.identity {
+    //position: absolute;
+    //width: 80%;
+    max-width: 700px;
+    margin: 0 auto;
+	padding-top:5px;
+    font-size: 1rem;
+    line-height: 1em;
+    color: #666666;
+	text-align: center;
+}
+
+a.refname {
+  decoration: none;
+  border-bottom: dashed 1px #888;
+  display: inline-block;
+  position: relative;
+}
+
+a.refname:hover {
+  decoration: none;
+  overflow: visible;
+    //box-shadow: rgba(0,0,0,0.15) 0 0 0 3px;
+    //transition: box-shadow 0.25s;
+}
+.refname:hover .fiche {
+  opacity: 1;
+  //bottom: -60px;
+  //top: 20px;
+  left: 150px;
+}
+/* CSS fiche - initially hidden */
+.fiche {
+  white-space:nowrap;
+  display: inline-block;
+  opacity: 0;
+  width: auto;//200px;
+  height: auto;//64px;
+  line-height: 20px;
+  padding: 5px;
+  padding-left:37px;
+  //top: 50%;
+  //left: 50%;
+  margin-left: 0;//-55px;
+  color: #3c3c3c; //#fff;
+  font-size: 12px;
+  font-weight: 700;
+  text-align:right;
+  vertical-align: middle;
+  background: #efefef;//#8c8c8c;
+  text-indent: 0;//64px;
+  //border-radius: 50px;
+  position: absolute;
+  bottom: -15px;
+  -webkit-backface-visibility: hidden;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.fiche img {
+  position: absolute;
+  left:-32px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50px;
+}
