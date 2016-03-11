@@ -144,7 +144,8 @@ ul.menu {
 
 /* menu item blog icon */
 .menu-blog {
-	background: #EE6848;
+	//background: #EE6848;
+	background: #e74c3c; //hubpress.io
 }
 
 /* menu item linkedin icon */
