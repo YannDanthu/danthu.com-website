@@ -1,5 +1,9 @@
 Options -Indexes
 
+RewriteEngine On
+RewriteCond %{HTTP:HTTPS} !on
+RewriteRule (.*) https://%{SERVER_NAME}/$1 [QSA,L,R=301]
+
 # BEGIN WordPress
 
 # END WordPress

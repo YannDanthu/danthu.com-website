@@ -1,16 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Yann Danthu</title>
     <meta charset="UTF-8" />
-    <meta name="copyright" content="actys.biz" />
-    <meta
-      name="description"
-      content="Yann Danthu, fullstack javascript developper. I was a Senior Java Software Engineer once."
-    />
-    <meta name="Author" content="Yann Danthu, actys.biz" />
-    <!-- <meta name="viewport" content="width=device-width, user-scalable=no" /> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Yann Danthu, fullstack JavaScript developer. I was a Senior Java Software Engineer once." />
+    <meta name="author" content="Yann Danthu" />
     <link rel="icon" href="/moi-circle.png" />
 
     <meta property="og:title" content="Yann Danthu" />
@@ -18,157 +13,131 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://yann.danthu.com" />
     <meta property="og:image" content="/moi-circle.png" />
-    <meta
-      property="og:description"
-      content="Yann Danthu, fullstack javascript developper. I was a Senior Java Software Engineer once."
-    />
-    <meta
-      name="twitter:card"
-      content="Yann Danthu, fullstack javascript developper"
-    />
-    <meta name="twitter:site" content="https://yann.danthu.com" />
+    <meta property="og:description" content="Yann Danthu, fullstack JavaScript developer. I was a Senior Java Software Engineer once." />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Yann Danthu" />
-    <meta
-      name="twitter:description"
-      content="Yann Danthu, fullstack javascript developper. I was a Senior Java Software Engineer once."
-    />
-    <meta name="twitter:creator" content="@YannDanthu" />
+    <meta name="twitter:description" content="Yann Danthu, fullstack JavaScript developer. I was a Senior Java Software Engineer once." />
     <meta name="twitter:image" content="/moi-circle.png" />
     <meta itemprop="name" content="Yann Danthu" />
-    <meta
-      itemprop="description"
-      content="Yann Danthu, fullstack javascript developper. I was a Senior Java Software Engineer once."
-    />
+    <meta itemprop="description" content="Yann Danthu, fullstack JavaScript developer. I was a Senior Java Software Engineer once." />
     <meta itemprop="image" content="/moi-circle.png" />
 
-    <link
-      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
+    <link rel="preload" as="image" href="logo.jpg" />
+    <link rel="stylesheet" href="styles.css" />
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PJZ9VB5M8D"></script>
     <script>
-      (function (i, s, o, g, r, a, m) {
-        i["GoogleAnalyticsObject"] = r;
-        (i[r] =
-          i[r] ||
-          function () {
-            (i[r].q = i[r].q || []).push(arguments);
-          }),
-          (i[r].l = 1 * new Date());
-        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m);
-      })(
-        window,
-        document,
-        "script",
-        "//www.google-analytics.com/analytics.js",
-        "ga"
-      );
-
-      ga("create", "UA-50478688-2", "yann.danthu.com");
-      ga("send", "pageview");
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PJZ9VB5M8D');
     </script>
     <style>
+      .tooltip {
+        position: relative;
+      }
       .tooltip .tooltip-text {
         visibility: hidden;
+        opacity: 0;
         text-align: center;
-        color: transparent;
         padding: 2px 6px;
         position: absolute;
-        z-index: -100;
+        left: 50%;
+        top: 100%;
+        z-index: 10;
         width: 110px;
-        margin-left: -55px;
-        margin-top: -40px;
+        transform: translateX(-50%) translateY(-4px);
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0s linear 0.3s;
       }
-      .tooltip:hover .tooltip-text {
+      .tooltip:hover .tooltip-text,
+      .tooltip:focus-within .tooltip-text {
         visibility: visible;
-        color: inherit;
-        margin-top: 0;
+        opacity: 1;
+        transform: translateX(-50%) translateY(4px);
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          transition-duration: 0.01ms !important;
+        }
       }
     </style>
   </head>
-  <body
-    class="container mx-auto h-screen font-sans font-light text-gray-700 flex flex-col space-between items-center justify-center space-y-2"
-  >
-    <header class="self-center mt-2" role="banner">
-      <img src="logo.jpg" alt="" class="text-center rounded-full h-40 w-40" />
+  <body class="container mx-auto min-h-[100dvh] font-sans font-light text-gray-700 flex flex-col items-center justify-center space-y-2">
+
+    <header class="self-center mt-2">
+      <img src="logo.jpg" alt="Yann Danthu" width="160" height="160" class="rounded-full h-40 w-40" />
     </header>
 
-    <div id="content flex flex-col text-center">
-      <div class="leading-8 text-center font-thin text-2xl" id="name">Yann Danthu</div>
-      <div class="leading-8 text-center" id="whatiam">Freelance Software Engineer</div>
-      <div class="leading-8 text-center my-2 italic font-medium" style="color: #ee6848;" id="whatido">
-        current: fullstack javascript developer
-      </div>
-    </div>
+    <main id="content" class="flex flex-col text-center">
+      <h1 class="leading-8 text-center font-thin text-2xl">Yann Danthu</h1>
+      <p class="leading-8 text-center" id="whatiam">Software Engineer</p>
+      <p class="leading-8 text-center my-2 italic font-medium" style="color: #ee6848;" id="whatido">
+        current: fullstack JavaScript developer
+      </p>
+    </main>
 
-    <div
-      class="flex flex-grow flex-row flex-wrap space-x-2 justify-center content-start"
-    >
+    <nav aria-label="Social links" class="flex flex-grow flex-row flex-wrap gap-2 justify-center content-start">
       <div class="tooltip text-center">
-        <a href="https://yanndanthu.github.io/"
+        <a href="https://yanndanthu.github.io/" target="_blank" rel="noopener noreferrer"
           ><img
-            class="rounded-full h-16 w-16 menu-github border-2 border-transparent hover:border-gray-400 transition ease-in-out duration-300 menu-blog"
+            class="rounded-full h-16 w-16 border-2 border-transparent hover:border-gray-400 transition ease-in-out duration-300"
             id="blog"
             style="background: #e74c3c;"
             src="hubpress-empty.png"
-            alt="blog"
-          /><span class="tooltip-text transition-all duration-300 ease-in-out ">blog</span></a
+            width="64" height="64"
+            alt="Blog"
+          /><span class="tooltip-text transition-all duration-300 ease-in-out">blog</span></a
         >
       </div>
       <div class="tooltip text-center">
-        <a href="https://www.linkedin.com/in/ydanthu" target="new"
+        <a href="https://www.linkedin.com/in/ydanthu" target="_blank" rel="noopener noreferrer"
           ><img
-            class="rounded-full h-16 w-16 menu-github border-2 border-transparent hover:border-gray-400 transition ease-in-out duration-300 menu-linkedin"
+            class="rounded-full h-16 w-16 border-2 border-transparent hover:border-gray-400 transition ease-in-out duration-300"
             id="linkedin"
             style="background: #0e76a8;"
             src="linkedin-empty.png"
-            alt="linkedin"
-          /><span class="tooltip-text transition-all duration-300 ease-in-out ">linkedin</span></a
+            width="64" height="64"
+            alt="LinkedIn"
+          /><span class="tooltip-text transition-all duration-300 ease-in-out">linkedin</span></a
         >
       </div>
       <div class="tooltip text-center">
-        <a href="https://twitter.com/YannDanthu" target="new"
-          ><img
-            class="rounded-full h-16 w-16 menu-github border-2 border-transparent hover:border-gray-400 transition ease-in-out duration-300 menu-twitter"
-            id="twitter"
-            style="background: #00acee;"
-            src="twitter-empty.png"
-            alt="twitter"
-          /><span class="tooltip-text transition-all duration-300 ease-in-out ">twitter</span></a
+        <a href="https://bsky.app/profile/yanndanthu.bsky.social" target="_blank" rel="noopener noreferrer" aria-label="Bluesky"
+          ><span
+            class="rounded-full h-16 w-16 border-2 border-transparent hover:border-gray-400 transition ease-in-out duration-300"
+            id="bluesky"
+            style="background: #0085ff; display: inline-grid; place-items: center;"
+          ><svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" width="36" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 511.999 452.266"><path fill="#FFFFFF" fill-rule="nonzero" d="M110.985 30.442c58.695 44.217 121.837 133.856 145.013 181.961 23.176-48.105 86.322-137.744 145.016-181.961 42.361-31.897 110.985-56.584 110.985 21.96 0 15.681-8.962 131.776-14.223 150.628-18.272 65.516-84.873 82.228-144.112 72.116 103.55 17.68 129.889 76.238 73 134.8-108.04 111.223-155.288-27.905-167.385-63.554-3.489-10.262-2.991-10.498-6.561 0-12.098 35.649-59.342 174.777-167.382 63.554-56.89-58.562-30.551-117.12 72.999-134.8-59.239 10.112-125.84-6.6-144.112-72.116C8.962 184.178 0 68.083 0 52.402c0-78.544 68.633-53.857 110.985-21.96z"/></svg>
+        </span>
+          <span class="tooltip-text transition-all duration-300 ease-in-out">bluesky</span></a
         >
       </div>
       <div class="tooltip text-center">
-        <a href="https://stackoverflow.com/users/3617454/yann" target="new"
+        <a href="https://stackoverflow.com/users/3617454/yann" target="_blank" rel="noopener noreferrer"
           ><img
-            class="rounded-full h-16 w-16 menu-github border-2 border-transparent hover:border-gray-400 transition ease-in-out duration-300 menu-stackoverflow"
+            class="rounded-full h-16 w-16 border-2 border-transparent hover:border-gray-400 transition ease-in-out duration-300"
             id="stackoverflow"
             style="background: #777;"
             src="stackoverflow-empty.png"
-            alt="stackoverflow"
-          /><span class="tooltip-text transition-all duration-300 ease-in-out ">stackoverflow</span></a
+            width="64" height="64"
+            alt="Stack Overflow"
+          /><span class="tooltip-text transition-all duration-300 ease-in-out">stackoverflow</span></a
         >
       </div>
       <div class="tooltip text-center">
-        <a href="https://github.com/YannDanthu" target="new"
+        <a href="https://github.com/YannDanthu" target="_blank" rel="noopener noreferrer"
           ><img
-            class="rounded-full h-16 w-16 menu-github border-2 border-transparent hover:border-gray-400 transition ease-in-out duration-300 menu-github"
+            class="rounded-full h-16 w-16 border-2 border-transparent hover:border-gray-400 transition ease-in-out duration-300"
             id="github"
             style="background: #171515;"
             src="github-empty.png"
-            alt="stackoverflow"
-          /><span class="tooltip-text transition-all duration-300 ease-in-out ">github</span></a
+            width="64" height="64"
+            alt="GitHub"
+          /><span class="tooltip-text transition-all duration-300 ease-in-out">github</span></a
         >
       </div>
-    </div>
+    </nav>
 
-    <footer class="mb-2">
-      <div class="identity text-lg">
-        <a href="http://actys.biz" style="color: #ee6848;">actys.biz</a> since
-        2004
-      </div>
-    </footer>
   </body>
 </html>
