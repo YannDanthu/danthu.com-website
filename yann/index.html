@@ -22,7 +22,11 @@
     <meta itemprop="description" content="Yann Danthu, fullstack JavaScript developer. I was a Senior Java Software Engineer once." />
     <meta itemprop="image" content="/moi-circle.png" />
 
-    <link rel="preload" as="image" href="logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;300&display=swap" />
+
+    <link rel="preload" as="image" href="logo.jpg" fetchpriority="high" />
     <link rel="stylesheet" href="styles.css" />
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PJZ9VB5M8D"></script>
@@ -33,12 +37,42 @@
       gtag('config', 'G-PJZ9VB5M8D');
     </script>
     <style>
+      :root {
+        --color-bg: #e6e2dc;
+        --color-text: #222228;
+        --color-signal: #8a3520;
+        --color-border-hover: #7a7e83;
+        --color-blog: #e74c3c;
+        --color-linkedin: #0e76a8;
+        --color-bluesky: #0085ff;
+        --color-stackoverflow: #777777;
+        --color-github: #171515;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --color-bg: #222228;
+          --color-text: #e6e2dc;
+          --color-signal: #ee6848;
+          --color-border-hover: #7baabb;
+        }
+      }
+      /* body.container (0,1,1) beats Tailwind class selectors (0,1,0) */
+      body.container {
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        font-family: 'Barlow', system-ui, -apple-system, sans-serif;
+      }
+      /* same specificity as Tailwind's rule; <style> appears after <link> so wins by cascade order */
+      .hover\:border-gray-400:hover {
+        border-color: var(--color-border-hover);
+      }
       .tooltip {
         position: relative;
       }
       .tooltip .tooltip-text {
         visibility: hidden;
         opacity: 0;
+        color: var(--color-text);
         text-align: center;
         padding: 2px 6px;
         position: absolute;
@@ -56,6 +90,83 @@
         transform: translateX(-50%) translateY(4px);
         transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
       }
+      .tooltip a:focus-visible img,
+      .tooltip a:focus-visible #bluesky {
+        outline: 2px solid var(--color-signal);
+        outline-offset: 3px;
+      }
+      @media (min-width: 640px) {
+        /* body.container (0,1,1) beats .flex (0,1,0) */
+        body.container {
+          display: grid;
+          grid-template-columns: 180px auto;
+          grid-template-rows: auto auto;
+          grid-template-areas: "avatar info" "avatar links";
+          column-gap: 3rem;
+          row-gap: 0.75rem;
+          justify-content: center;
+          align-content: center;
+        }
+        body.container > header {
+          grid-area: avatar;
+          align-self: center;
+          margin-top: 0;
+        }
+        body.container > main {
+          grid-area: info;
+          align-self: end;
+        }
+        /* body.container > nav (0,1,2) beats .justify-center and .flex-grow (0,1,0) */
+        body.container > nav {
+          grid-area: links;
+          align-self: start;
+          justify-content: flex-start;
+          flex-grow: 0;
+        }
+        body.container > main h1,
+        body.container > main p {
+          text-align: left;
+        }
+        body.container > main h1 {
+          font-size: clamp(1.75rem, 3vw, 2.5rem);
+          line-height: 1.15;
+          letter-spacing: -0.01em;
+        }
+      }
+      @media (max-width: 639px) {
+        /* no Tailwind rule sets body padding; no competition */
+        body {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+        /* body.container > nav (0,1,2) beats .flex-grow (0,1,0) */
+        body.container > nav {
+          flex-grow: 0;
+        }
+        /* #content h1 (1,0,1) beats .text-2xl and .leading-8 (0,1,0) */
+        #content h1 {
+          font-size: clamp(1.875rem, 8vw, 2.25rem);
+          line-height: 1.4;
+        }
+        .tooltip > a {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        /* .tooltip .tooltip-text (0,2,0) matches base rule specificity; wins by source order */
+        .tooltip .tooltip-text {
+          position: static;
+          visibility: visible;
+          opacity: 1;
+          transform: none;
+          width: auto;
+          margin-top: 4px;
+          font-size: 0.75rem;
+          color: var(--color-text);
+          white-space: nowrap;
+        }
+      }
+      /* !important is legitimate here: must override inline styles for accessibility */
       @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after {
           transition-duration: 0.01ms !important;
@@ -65,14 +176,14 @@
   </head>
   <body class="container mx-auto min-h-[100dvh] font-sans font-light text-gray-700 flex flex-col items-center justify-center space-y-2">
 
-    <header class="self-center mt-2">
+    <header class="self-center">
       <img src="logo.jpg" alt="Yann Danthu" width="160" height="160" class="rounded-full h-40 w-40" />
     </header>
 
     <main id="content" class="flex flex-col text-center">
       <h1 class="leading-8 text-center font-thin text-2xl">Yann Danthu</h1>
       <p class="leading-8 text-center" id="whatiam">Software Engineer</p>
-      <p class="leading-8 text-center my-2 italic font-medium" style="color: #ee6848;" id="whatido">
+      <p class="leading-8 text-center my-2 italic font-medium" style="color: var(--color-signal);" id="whatido">
         current: fullstack JavaScript developer
       </p>
     </main>
@@ -83,11 +194,11 @@
           ><img
             class="rounded-full h-16 w-16 border-2 border-transparent hover:border-gray-400 transition ease-in-out duration-300"
             id="blog"
-            style="background: #e74c3c;"
+            style="background: var(--color-blog);"
             src="hubpress-empty.png"
             width="64" height="64"
             alt="Blog"
-          /><span class="tooltip-text transition-all duration-300 ease-in-out">blog</span></a
+          /><span class="tooltip-text">blog</span></a
         >
       </div>
       <div class="tooltip text-center">
@@ -95,11 +206,11 @@
           ><img
             class="rounded-full h-16 w-16 border-2 border-transparent hover:border-gray-400 transition ease-in-out duration-300"
             id="linkedin"
-            style="background: #0e76a8;"
+            style="background: var(--color-linkedin);"
             src="linkedin-empty.png"
             width="64" height="64"
             alt="LinkedIn"
-          /><span class="tooltip-text transition-all duration-300 ease-in-out">linkedin</span></a
+          /><span class="tooltip-text">linkedin</span></a
         >
       </div>
       <div class="tooltip text-center">
@@ -107,10 +218,10 @@
           ><span
             class="rounded-full h-16 w-16 border-2 border-transparent hover:border-gray-400 transition ease-in-out duration-300"
             id="bluesky"
-            style="background: #0085ff; display: inline-grid; place-items: center;"
+            style="background: var(--color-bluesky); display: inline-grid; place-items: center;"
           ><svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" width="36" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 511.999 452.266"><path fill="#FFFFFF" fill-rule="nonzero" d="M110.985 30.442c58.695 44.217 121.837 133.856 145.013 181.961 23.176-48.105 86.322-137.744 145.016-181.961 42.361-31.897 110.985-56.584 110.985 21.96 0 15.681-8.962 131.776-14.223 150.628-18.272 65.516-84.873 82.228-144.112 72.116 103.55 17.68 129.889 76.238 73 134.8-108.04 111.223-155.288-27.905-167.385-63.554-3.489-10.262-2.991-10.498-6.561 0-12.098 35.649-59.342 174.777-167.382 63.554-56.89-58.562-30.551-117.12 72.999-134.8-59.239 10.112-125.84-6.6-144.112-72.116C8.962 184.178 0 68.083 0 52.402c0-78.544 68.633-53.857 110.985-21.96z"/></svg>
         </span>
-          <span class="tooltip-text transition-all duration-300 ease-in-out">bluesky</span></a
+          <span class="tooltip-text">bluesky</span></a
         >
       </div>
       <div class="tooltip text-center">
@@ -118,11 +229,11 @@
           ><img
             class="rounded-full h-16 w-16 border-2 border-transparent hover:border-gray-400 transition ease-in-out duration-300"
             id="stackoverflow"
-            style="background: #777;"
+            style="background: var(--color-stackoverflow);"
             src="stackoverflow-empty.png"
             width="64" height="64"
             alt="Stack Overflow"
-          /><span class="tooltip-text transition-all duration-300 ease-in-out">stackoverflow</span></a
+          /><span class="tooltip-text">stackoverflow</span></a
         >
       </div>
       <div class="tooltip text-center">
@@ -130,11 +241,11 @@
           ><img
             class="rounded-full h-16 w-16 border-2 border-transparent hover:border-gray-400 transition ease-in-out duration-300"
             id="github"
-            style="background: #171515;"
+            style="background: var(--color-github);"
             src="github-empty.png"
             width="64" height="64"
             alt="GitHub"
-          /><span class="tooltip-text transition-all duration-300 ease-in-out">github</span></a
+          /><span class="tooltip-text">github</span></a
         >
       </div>
     </nav>
